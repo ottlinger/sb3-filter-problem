@@ -11,7 +11,7 @@
   <groupId>de.aikiit.prototype</groupId>
   <artifactId>sb3-portal</artifactId>
   <version>3.2.0-SNAPSHOT</version>
-  <name>my-portal-sb2</name>
+  <name>my-portal-sb3</name>
   <description>SB3-Application</description>
   <inceptionYear>2020</inceptionYear>
   <properties>
