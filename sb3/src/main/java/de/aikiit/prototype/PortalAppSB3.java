@@ -10,10 +10,10 @@ import java.util.stream.Stream;
 
 @SpringBootApplication
 @Slf4j
-public class PortalAppSB2 {
+public class PortalAppSB3 {
 
     public static void main(String[] args) {
-        ApplicationContext applicationContext = SpringApplication.run(PortalAppSB2.class, args);
+        ApplicationContext applicationContext = SpringApplication.run(PortalAppSB3.class, args);
 
         log.info("Started application with {} beans", applicationContext.getBeanDefinitionCount());
         final Stream<String> sorted = Arrays.stream(applicationContext.getBeanDefinitionNames()).sorted();
