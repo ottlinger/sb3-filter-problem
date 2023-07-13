@@ -4,28 +4,28 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>3.1.1</version>
+    <version>2.7.13</version>
     <relativePath/>
     <!-- lookup parent from repository -->
   </parent>
   <groupId>de.aikiit.prototype</groupId>
   <artifactId>sb2-portal</artifactId>
-  <version>3.2.0-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
   <name>my-portal-sb2</name>
   <description>SB2-Application</description>
   <inceptionYear>2020</inceptionYear>
   <properties>
-    <java.version>17</java.version>
+    <java.version>11</java.version>
     <propertiesEncoding>ISO-8859-1</propertiesEncoding>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <liquibase.version>4.22.0</liquibase.version>
+    <liquibase.version>4.23.0</liquibase.version>
     <testcontainers.version>1.18.3</testcontainers.version>
   </properties>
   <dependencies>
     <dependency>
       <groupId>nl.jqno.equalsverifier</groupId>
       <artifactId>equalsverifier</artifactId>
-      <version>3.14.2</version>
+      <version>3.14.3</version>
       <scope>test</scope>
     </dependency>
     <!-- issue #26 -->
@@ -102,23 +102,7 @@
     </dependency>
     <dependency>
       <groupId>org.thymeleaf.extras</groupId>
-      <artifactId>thymeleaf-extras-springsecurity6</artifactId>
-    </dependency>
-    <!-- until https://github.com/thymeleaf/thymeleaf/issues/921 is fixed an 3.1.0.RC2 is out -->
-    <dependency>
-      <groupId>org.thymeleaf</groupId>
-      <artifactId>thymeleaf</artifactId>
-      <!-- no explicit version>3.1.1.RELEASE</version -->
-    </dependency>
-    <!-- TODO Remove before prod deployment https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-3.0-Migration-Guide - property migration guide -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-properties-migrator</artifactId>
-      <scope>runtime</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-config</artifactId>
+      <artifactId>thymeleaf-extras-springsecurity5</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -193,7 +177,7 @@
       <id>development</id>
       <build>
         <defaultGoal>clean versions:display-dependency-updates versions:display-plugin-updates
-                    versions:plugin-updates-report enforcer:display-info clover:clover install
+                    versions:plugin-updates-report enforcer:display-info clover:instrument install
                 </defaultGoal>
       </build>
       <dependencies>
@@ -300,11 +284,13 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.1.2</version>
         <configuration>
-          <forkCount>2</forkCount>
-          <reuseForks>true</reuseForks>
-          <systemPropertyVariables>
-            <clover.server>true</clover.server>
-          </systemPropertyVariables>
+          <forkMode>once</forkMode>
+          <systemProperties>
+            <property>
+              <name>clover.server</name>
+              <value>true</value>
+            </property>
+          </systemProperties>
         </configuration>
         <executions>
           <execution>
@@ -375,6 +361,8 @@
               <additionalProperties>
                 <encoding.source>UTF-8</encoding.source>
                 <encoding.reporting>UTF-8</encoding.reporting>
+                <java.source>${maven.compiler.source}</java.source>
+                <java.target>${maven.compiler.target}</java.target>
               </additionalProperties>
             </configuration>
           </execution>
@@ -410,32 +398,4 @@
       </plugin>
     </plugins>
   </build>
-  <repositories>
-    <repository>
-      <id>spring-milestones</id>
-      <name>Spring Milestones</name>
-      <url>https://repo.spring.io/milestone</url>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </repository>
-    <repository>
-      <id>sonatype-nexus-snapshots</id>
-      <name>Sonatype Nexus Snapshots</name>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </repository>
-  </repositories>
-  <pluginRepositories>
-    <pluginRepository>
-      <id>spring-milestones</id>
-      <name>Spring Milestones</name>
-      <url>https://repo.spring.io/milestone</url>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </pluginRepository>
-  </pluginRepositories>
 </project>
