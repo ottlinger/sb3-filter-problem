@@ -1,4 +1,4 @@
-package de.aikiit.prototype;
+package de.aikiit.prototype3;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
