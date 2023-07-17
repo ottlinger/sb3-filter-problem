@@ -23,7 +23,7 @@ https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
             </column>
         </createTable>
 
-        <createTable tableName="user">
+        <createTable tableName="appuser">
             <column name="id" type="uuid">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -46,7 +46,7 @@ https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
         <addUniqueConstraint
                 columnNames="user_name, tenant_name"
                 constraintName="UNIQUE_TENANT_USERNAME_COMBINATION"
-                tableName="user"
+                tableName="appuser"
         />
 
         <createTable tableName="users_roles">
@@ -74,12 +74,12 @@ https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
     <changeSet id="20230717#0001FK" author="otg">
         <comment>Setup database foreign key constraints</comment>
-        <addForeignKeyConstraint baseTableName="user" baseColumnNames="tenant_name" constraintName="FK_USER_TENANT_ID" referencedTableName="tenant"
+        <addForeignKeyConstraint baseTableName="appuser" baseColumnNames="tenant_name" constraintName="FK_USER_TENANT_ID" referencedTableName="tenant"
                                  referencedColumnNames="id"/>
 
         <addForeignKeyConstraint baseTableName="users_roles" baseColumnNames="role_id" constraintName="FK_USERS_ROLES_ROLE_ID" referencedTableName="role"
                                  referencedColumnNames="id"/>
-        <addForeignKeyConstraint baseTableName="users_roles" baseColumnNames="user_id" constraintName="FK_USERS_ROLES_USER_ID" referencedTableName="user"
+        <addForeignKeyConstraint baseTableName="users_roles" baseColumnNames="user_id" constraintName="FK_USERS_ROLES_USER_ID" referencedTableName="appuser"
                                  referencedColumnNames="id"/>
 
         <addForeignKeyConstraint baseTableName="user_token" baseColumnNames="tenant_name" constraintName="FK_USER_TOKEN_TENANT_ID" referencedTableName="tenant"

@@ -14,6 +14,7 @@ import java.util.*;
 @Getter
 @Setter
 @Table(
+        name = "appuser",
         uniqueConstraints = @UniqueConstraint(columnNames = {"tenant_name", "userName"})
 )
 public class User implements Serializable, Comparable<User> {
