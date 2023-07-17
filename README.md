@@ -5,8 +5,12 @@ Repo to analyze problems during migration from SpringBoot2 to SpringBoot3
 
 The SB2 application works fine, but SB3 does not allow a login ....
 
+### SB2
 
-## how to run
+* login with 3 fields
+* filter during logout
+
+### how to run
 
 ```
 cd sb2
