@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet id="20230717#0001" author="otg">
+        <comment>Setup base database tables via XML-syntax</comment>
+        <createTable tableName="role">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(50)"/>
+        </createTable>
+
+        <createTable tableName="tenant">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="created_at" type="int8"/>
+            <column name="enabled" type="boolean"/>
+            <column name="name" type="varchar(100)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="user">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="created_at" type="int8"/>
+            <column name="enabled" type="boolean"/>
+            <column name="full_name" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password_hash" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reset_token" type="varchar(255)"/>
+            <column name="user_name" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tenant_name" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addUniqueConstraint
+                columnNames="user_name, tenant_name"
+                constraintName="UNIQUE_TENANT_USERNAME_COMBINATION"
+                tableName="user"
+        />
+
+        <createTable tableName="users_roles">
+            <column name="user_id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="role_id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="user_token">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="created_at" type="int8"/>
+            <column name="enabled" type="boolean"/>
+            <column name="redeemed_at" type="int8"/>
+            <column name="token" type="varchar(50)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="tenant_name" type="uuid"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20230717#0001FK" author="otg">
+        <comment>Setup database foreign key constraints</comment>
+        <addForeignKeyConstraint baseTableName="user" baseColumnNames="tenant_name" constraintName="FK_USER_TENANT_ID" referencedTableName="tenant"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="users_roles" baseColumnNames="role_id" constraintName="FK_USERS_ROLES_ROLE_ID" referencedTableName="role"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="users_roles" baseColumnNames="user_id" constraintName="FK_USERS_ROLES_USER_ID" referencedTableName="user"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="user_token" baseColumnNames="tenant_name" constraintName="FK_USER_TOKEN_TENANT_ID" referencedTableName="tenant"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>
