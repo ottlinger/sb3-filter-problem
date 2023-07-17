@@ -12,4 +12,3 @@ The SB2 application works fine, but SB3 does not allow a login ....
 cd sb2
 mvn spring-boot:run
 ´´´
-
