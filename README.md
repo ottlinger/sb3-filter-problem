@@ -5,10 +5,10 @@ Repo to analyze problems during migration from SpringBoot2 to SpringBoot3
 
 The SB2 application works fine, but SB3 does not allow a login ....
 
-### SB2
+### SB2 features
 
 * login with 3 fields: tenant, username, password
-* filter during logout
+* filter during logout to perform on-logout actions
 * i18n
 
 ### how to run
@@ -22,10 +22,14 @@ mvn spring-boot:run
 
 You may use the following combination in order to successfully login:
 
-| Item              | In Stock | Price |
-| :---------------- | :------: | ----: |
-| Python Hat        |   True   | 23.99 |
-| SQL Hat           |   True   | 23.99 |
-| Codecademy Tee    |  False   | 19.99 |
-| Codecademy Hoodie |  False   | 42.99 |
-
+| Tenant | Username | Password |
+|:-------|:--------:|---------:|
+| A      |  auser   |    auser |
+| A      |  buser   |    buser |
+| A      |  cuser   |    cuser |
+| B      |  auser   |    auser |
+| B      |  buser   |    buser |
+| B      |  cuser   |    cuser |
+| C      |  auser   |    auser |
+| C      |  buser   |    buser |
+| C      |  cuser   |    cuser |
