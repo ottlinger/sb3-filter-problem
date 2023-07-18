@@ -51,7 +51,7 @@
                     type="submit"></button>
             <p class="mt-5 mb-3 text-muted">&copy; 2023-<span
                     th:text="${#dates.format(#execInfo.now.time, 'yyyy')}"></span> <span th:text="#{title.main}"></span>
-                | <a th:href="#{footer.homepage}" th:text="#{login.form.backhome}"></a>
+                | <a th:href="#{footer.homepage}" target="_blank" th:text="#{login.form.backhome}"></a>
             </p>
         </form>
     </div>
