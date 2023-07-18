@@ -8,10 +8,11 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Optional;
 
+import static de.aikiit.prototype.seeding.BootstrapDataCreator.ROLE_PREFIX;
+
 @Slf4j
 public class ProfileSeedDataCreator {
     private static final List<String> ROLES = List.of("USER", "ADMIN");
-    private static final String ROLE_PREFIX = "ROLE_";
 
     private static void createIfNotExistingWithCorrectPrefix(String roleName, RoleRepository roleRepository) {
         Optional<Role> role = roleRepository.findByName(ROLE_PREFIX + roleName);
