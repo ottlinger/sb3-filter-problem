@@ -17,7 +17,7 @@ The SB2 application works fine, but SB3 does not allow a login ....
 cd sb2
 mvn spring-boot:run
 ```
-Launch the app via [http://localhost:8080](localhost:8080)
+Launch the app via (http://localhost:8080)[http://localhost:8080]
 
 ### valid credentials
 
