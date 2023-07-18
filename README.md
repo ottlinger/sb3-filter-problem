@@ -11,15 +11,17 @@ The SB2 application works fine, but SB3 does not allow a login ....
 * filter during logout to perform on-logout actions
 * i18n
 
-### how to run
+## How to run the app
 
 ```
 cd sb2
 mvn spring-boot:run
 ```
 Launch the app via [localhost:8080](http://localhost:8080)
+and log in.
+After a successful login you may logout again.
 
-### valid credentials
+### Which credentials may I use?
 
 You may use the following combination in order to successfully login:
 
