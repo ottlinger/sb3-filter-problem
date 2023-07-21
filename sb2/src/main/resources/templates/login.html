@@ -15,6 +15,9 @@
             <div th:replace="fragments/flashmessage :: flashmessage"></div>
             <h2 class="form-signin-heading" th:text="#{login.headline}"></h2>
 
+            <div class="alert alert-primary" role="alert" th:if="${param.error}" th:text="#{login.error.invalid}"></div>
+            <div class="alert alert-success" role="alert" th:if="${param.success}" th:text="#{login.logout.success}"></div>
+
             <div class="form-group">
                 <label class="col-form-label sr-only" for="organisation" th:text="#{login.form.tenant}"></label>
                 <input autocomplete="organisation" autofocus class="form-control" id="organisation" name="organisation"
