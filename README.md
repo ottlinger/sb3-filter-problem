@@ -1,8 +1,12 @@
 # sb3-filter-problem
-Repo to analyze problems during migration from SpringBoot2 (SB2) to SpringBoot3 (SB3)
+Repo to analyze problems during migration from SpringBoot2 (SB2) to SpringBoot3 (SB3).
+
 The SB2 application works fine, but SB3 does not allow a login ....
-the app has 3 elements for login (tenant, username and password) and a logout handler performs operations upon successful logout.
-Both apps contain no tests as they are extracted and adapted from a different (private) project.
+
+The self-contained example-app has 3 elements for login (tenant, username and password) and a specific logout handler to perform operations upon successful logout.
+H2 is used as a database and data structures are created via liquibase.
+
+Both apps contain no tests as they are taken and adapted from a different (private) project.
 
 ### Feature comparison between SB2 and SB3 version of the same application
 
