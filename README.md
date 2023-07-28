@@ -2,6 +2,7 @@
 Repo to analyze problems during migration from SpringBoot2 (SB2) to SpringBoot3 (SB3)
 The SB2 application works fine, but SB3 does not allow a login ....
 the app has 3 elements for login (tenant, username and password) and a logout handler performs operations upon successful logout.
+Both apps contain no tests as they are extracted and adapted from a different (private) project.
 
 ### Feature comparison between SB2 and SB3 version of the same application
 
