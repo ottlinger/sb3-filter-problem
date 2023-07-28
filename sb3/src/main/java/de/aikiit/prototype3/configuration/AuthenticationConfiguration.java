@@ -1,4 +1,4 @@
-package de.aikiit.prototype.configuration;
+package de.aikiit.prototype3.configuration;
 
 import de.aikiit.prototype3.configuration.Sb3CustomDsl;
 import de.aikiit.prototype3.login.LeaveEventsUponLogoutSuccessHandler;
