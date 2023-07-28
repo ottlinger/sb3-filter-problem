@@ -8,7 +8,7 @@ H2 is used as a database and data structures are created via liquibase.
 
 Both apps contain no tests as they are taken and adapted from a different (private) project.
 
-### Feature comparison between SB2 and SB3 version of the same application
+## Feature comparison between SB2 and SB3 and quick links into the code
 
 | Description                                                                                         |                                             SB2                                              | SB3                                                                                                                            | Status SB2                       |   Status SB3    |
 |:----------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------|:---------------------------------:|:---------------:|
