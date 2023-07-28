@@ -7,7 +7,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface UserRepository extends JpaRepository<User, UUID> {
-// working in psql:
+    // working in psql:
 // @Query("SELECT u FROM User u, Tenant t WHERE lower(u.userName) = lower(:userName) AND u.organisation = t AND lower(t.name) = lower(:tenantName)")
     @Query("SELECT u FROM User u, Tenant t WHERE lower(u.userName) = lower(:userName) AND u.organisation = t AND lower(t.name) = lower(:tenantName)")
     Optional<User> getForLogin(String userName, String tenantName);

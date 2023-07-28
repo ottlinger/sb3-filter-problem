@@ -23,7 +23,7 @@ public class LeaveEventsUponLogoutSuccessHandler extends SimpleUrlLogoutSuccessH
 
         if (authentication != null && authentication.getPrincipal() instanceof ApplicationUser) {
             ApplicationUser userDetails = (ApplicationUser) authentication.getPrincipal();
-            log.info("Logged out for tenant {}",userDetails.getTenant());
+            log.info("Logged out for tenant {}", userDetails.getTenant());
 
         } else {
             log.info("Unable to perform proper logout due to wrong class of UserCredentials, this is okay during test runs.");
