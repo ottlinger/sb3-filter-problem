@@ -2,9 +2,9 @@ package de.aikiit.prototype3.user;
 
 import de.aikiit.prototype3.tenant.Role;
 import de.aikiit.prototype3.tenant.Tenant;
+import jakarta.persistence.*;
 import lombok.*;
 
-import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.*;
 
@@ -14,6 +14,7 @@ import java.util.*;
 @Getter
 @Setter
 @Table(
+        name = "appuser",
         uniqueConstraints = @UniqueConstraint(columnNames = {"tenant_name", "userName"})
 )
 public class User implements Serializable, Comparable<User> {
