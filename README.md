@@ -4,10 +4,10 @@ The SB2 application works fine, but SB3 does not allow a login ....
 
 ### Feature comparison between SB2 and SB3 version of the same application
 
-| Description |   SB2    |    SB3     | Status |
-|:------------|:--------:|:----------:|:-------|
-| A           |  auser   |   auser    | (/)    |
-| A           |  auser   |   auser    | (/)    |
+| Description |   SB2    |    SB3     | Status          |
+|:------------|:--------:|:----------:|:----------------|
+| A           |  auser   |   auser    | 👍 working      |
+| A           |  auser   |   auser    | 🔥 not working  |
 
 * login with 3 fields: tenant, username, password
 * filter during logout to perform on-logout actions
