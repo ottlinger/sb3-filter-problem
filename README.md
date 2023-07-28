@@ -6,10 +6,11 @@ Both apps contain no tests as they are extracted and adapted from a different (p
 
 ### Feature comparison between SB2 and SB3 version of the same application
 
-| Description                                                     |                                              SB2                                               |    SB3     | Status          |
-|:----------------------------------------------------------------|:----------------------------------------------------------------------------------------------:|:----------:|:----------------|
-| ApplicationUser to encapsulate tenant, user, password for login | [ApplicationUser](./blob/main/sb2/src/main/java/de/aikiit/prototype/user/ApplicationUser.java) |   auser    | 👍 working      |
-| A                                                               |                                             auser                                              |   auser    | 🔥 not working  |
+| Description                                                                                             |                                                  SB2                                                   | SB3                                                                                                     | Status          |
+|:--------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------|:----------------|
+| ApplicationUser to encapsulate tenant, user, password for login                                         | [ApplicationUser](./blob/main/sb2/src/main/java/de/aikiit/prototype/user/ApplicationUser.java)     | [ApplicationUser](./blob/main/sb3/src/main/java/de/aikiit/prototype3/user/ApplicationUser.java)         | 👍 working      |
+| DataSeeding, mechanism to create example tenant, user, password combinations upon application start     | [Package seeding](./blob/main/sb2/src/main/java/de/aikiit/prototype/seeding/BootstrapDataCreator.java) | [Package Seeding](./blob/main/sb3/src/main/java/de/aikiit/prototype3/seeding/BootstrapDataCreator.java) | 👍 working      |
+| A                                                                                                       |                                                 auser                                                  | auser                                                                                                   | 🔥 not working  |
 
 * login with 3 fields: tenant, username, password
 * filter during logout to perform on-logout actions
