@@ -1,9 +1,9 @@
 package de.aikiit.prototype3.tenant;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.Comparator;
 import java.util.Objects;

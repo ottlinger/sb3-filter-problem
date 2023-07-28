@@ -1,10 +1,10 @@
 package de.aikiit.prototype3.tenant;
 
 import de.aikiit.prototype3.user.User;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.Set;
