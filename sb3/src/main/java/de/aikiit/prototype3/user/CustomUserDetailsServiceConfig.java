@@ -14,7 +14,6 @@ import org.springframework.util.StringUtils;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Configuration
 @Slf4j
@@ -22,7 +21,7 @@ public class CustomUserDetailsServiceConfig {
 
     @Bean(name = "Sb3UserDetailsService")
     @Transactional(readOnly = true)
-    public UserDetailsService sb2UserDetailsService(final UserRepository userRepository) {
+    public UserDetailsService sb3UserDetailsService(final UserRepository userRepository) {
         return username -> {
             String[] usernameTenant = StringUtils.split(username, String.valueOf(Character.LINE_SEPARATOR));
             if (usernameTenant == null || usernameTenant.length != 2) {
