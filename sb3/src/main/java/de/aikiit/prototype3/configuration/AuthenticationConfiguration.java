@@ -1,6 +1,5 @@
 package de.aikiit.prototype3.configuration;
 
-import de.aikiit.prototype3.configuration.Sb3CustomDsl;
 import de.aikiit.prototype3.login.LeaveEventsUponLogoutSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
