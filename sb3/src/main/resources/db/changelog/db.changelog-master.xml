@@ -4,6 +4,7 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
 https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
     <!-- add new entries here, one change per file -->
-    <!--include file="/db/changelog/changes/20210218-issue16-rememberMeSetup.xml"/-->
+    <include file="/db/changelog/changes/0001.xml"/>
+    <include file="/db/changelog/changes/0002.xml"/>
 </databaseChangeLog>
 
