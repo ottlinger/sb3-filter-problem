@@ -8,6 +8,8 @@ H2 is used as a database and data structures are created via liquibase.
 
 Both apps contain no tests as they are taken and adapted from a different (private) project.
 
+[![GH Actions Status](https://github.com/ottlinger/sb3-filter-problem/workflows/JavaCI/badge.svg)](https://github.com/ottlinger/sb3-filter-problem/actions)
+
 ## Feature comparison between SB2 and SB3 and quick links into the code
 
 | Description                                                                                         |                                                         SB2 - 2.7.14                                                          | SB3 - 3.2.0-M1                                                                                                                 | Status SB2  |   Status SB3   |
