@@ -10,7 +10,7 @@ Both apps contain no tests as they are taken and adapted from a different (priva
 
 ## Feature comparison between SB2 and SB3 and quick links into the code
 
-| Description                                                                                         |                                                              SB2                                                              | SB3                                                                                                                            | Status SB2                       |   Status SB3    |
+| Description                                                                                         |                                                              SB2                                                              | SB3                                                                                                                            | Status SB2 2.7.14                     |   Status SB3 3.2.0-M1  |
 |:----------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------|:---------------------------------:|:---------------:|
 | i18n via property files                                                                             |                                                                                                                               |                                                                                                                                | 👍 working                       |   👍 working    |
 | ApplicationUser to encapsulate tenant, user, password for login                                     |                     [ApplicationUser](./sb2/src/main/java/de/aikiit/prototype/user/ApplicationUser.java)                      | [ApplicationUser](./sb3/src/main/java/de/aikiit/prototype3/user/ApplicationUser.java)                                          | 👍 working                       |   👍 working    |
@@ -25,7 +25,7 @@ Both apps contain no tests as they are taken and adapted from a different (priva
 ### Working application with SB2
 
 ```
-cd sb2 
+cd sb2
 mvn spring-boot:run
 ```
 Launch the app via [localhost:8080](http://localhost:8080)
@@ -35,7 +35,7 @@ After a successful login you may logout again.
 ### Problematic application with SB3
 
 ```
-cd sb3 
+cd sb3
 mvn spring-boot:run
 ```
 Launch the app via [localhost:8080](http://localhost:8080)
