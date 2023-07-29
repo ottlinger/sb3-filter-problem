@@ -20,9 +20,9 @@ jobs:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
-      - name: Build SB3 with Maven
-        run: mvn -B -Pdevelopment clean install
+      - name: Build SB3-part with Maven
+        run: mvn -B -Pdevelopment enforcer:display-info clean install
         working-directory: ./sb3
-      - name: Build SB2 with Maven
-        run: mvn -B -Pdevelopment clean install
+      - name: Build SB2-part with Maven
+        run: mvn -B -Pdevelopment enforcer:display-info clean install
         working-directory: ./sb2
