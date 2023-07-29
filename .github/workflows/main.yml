@@ -21,8 +21,8 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
       - name: Build SB3 with Maven
-        run: mvn -B -Pdevelopment clean enforcer:display-info clover:instrument install
+        run: mvn -B -Pdevelopment clean install
         working-directory: ./sb3
       - name: Build SB2 with Maven
-        run: mvn -B -Pdevelopment clean enforcer:display-info clover:instrument install
+        run: mvn -B -Pdevelopment clean install
         working-directory: ./sb2
