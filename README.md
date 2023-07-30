@@ -24,11 +24,13 @@ Both apps contain no tests as they are taken and adapted from a different (priva
 
 ## How to run the app
 
+The app uses the Maven wrapper, thus all you need is a recent JDK such as JDK 17.
+
 ### Working application with SB2
 
 ```
 cd sb2
-mvn spring-boot:run
+./mvnw spring-boot:run
 ```
 Launch the app via [localhost:8080](http://localhost:8080)
 and log in.
@@ -38,7 +40,7 @@ After a successful login you may logout again.
 
 ```
 cd sb3
-mvn spring-boot:run
+./mvnw spring-boot:run
 ```
 Launch the app via [localhost:8080](http://localhost:8080)
 
