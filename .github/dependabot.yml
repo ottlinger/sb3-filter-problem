@@ -1,0 +1,10 @@
+version: 2
+updates:
+  - package-ecosystem: "maven"
+    directory: "/sb3"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "maven"
+    directory: "/sb2"
+    schedule:
+      interval: "daily"
