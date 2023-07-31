@@ -49,8 +49,6 @@ public class AuthenticationConfiguration {
     @Bean
     @Order(1)
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.apply(Sb3CustomDsl.create());
-
         http.authorizeHttpRequests((authorizeRequests) ->
                 authorizeRequests
                         .requestMatchers(permitAllUris()).permitAll()
@@ -59,6 +57,7 @@ public class AuthenticationConfiguration {
 
         http.cors(AbstractHttpConfigurer::disable);
         http.csrf(AbstractHttpConfigurer::disable);
+
         http.formLogin((formLogin) ->
                 formLogin
                         .loginPage("/login")
@@ -67,7 +66,7 @@ public class AuthenticationConfiguration {
                         .permitAll()
 
         );
-        
+
         http.userDetailsService(userDetailsService);
 
         //.tokenRepository(persistentTokenRepository());
@@ -83,6 +82,8 @@ public class AuthenticationConfiguration {
             .invalidateHttpSession(true)
             .deleteCookies("remember-me", "JSESSIONID")
          );
+
+        http.with(Sb3CustomDsl.create(), Customizer.withDefaults());
 
         return http.build();
     }
