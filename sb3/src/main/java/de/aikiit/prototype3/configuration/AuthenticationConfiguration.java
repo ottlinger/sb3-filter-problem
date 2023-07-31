@@ -66,7 +66,9 @@ public class AuthenticationConfiguration {
                         .failureHandler(failureHandler())
                         .permitAll()
 
-        ).userDetailsService(userDetailsService);
+        );
+        
+        http.userDetailsService(userDetailsService);
 
         //.tokenRepository(persistentTokenRepository());
         http.rememberMe(Customizer.withDefaults());
