@@ -63,6 +63,7 @@ public class AuthenticationConfiguration {
                 formLogin
                         .loginPage("/login")
                         // .defaultSuccessUrl("/")
+                        .failureHandler(failureHandler())
                         .permitAll()
 
         ).userDetailsService(userDetailsService);
