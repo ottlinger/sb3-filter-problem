@@ -92,7 +92,8 @@ org.springframework.security.web.access.intercept.FilterSecurityInterceptor@64a0
 #### SB3 order
 
 ```
-2023-07-31T13:57:59.184+02:00  INFO 218267 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [ org.springframework.security.web.session.DisableEncodeUrlFilter@74fa4891,
+2023-07-31T13:57:59.184+02:00  INFO 218267 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [
+org.springframework.security.web.session.DisableEncodeUrlFilter@74fa4891,
 org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@28245839,
 org.springframework.security.web.context.SecurityContextHolderFilter@207bf6d8,
 org.springframework.security.web.header.HeaderWriterFilter@19f72e12,
