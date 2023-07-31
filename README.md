@@ -61,3 +61,22 @@ You may use the following combination in order to successfully login:
 | C      |  auser   |    auser |
 | C      |  buser   |    buser |
 | C      |  cuser   |    cuser |
+
+## Posted on StackOverflow
+
+As Spring Boot does not want questions in Github issues I tried to start a post about the problem at [StackOverflow](https://stackoverflow.com/questions/76799484/usernamepasswordauthenticationfilter-and-simpleurllogoutsuccesshandler-not-worki)
+
+### 2023-07-31 Order of filters
+
+Suspected order of filters to be responsible for the problem, but seems to be similar (disabling CORS in SB3 does not help).
+
+#### SB2 order
+
+```
+2023-07-31 13:55:16.652  INFO 217030 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@48c42253, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@32647dde, org.springframework.security.web.context.SecurityContextPersistenceFilter@2af5eab6, org.springframework.security.web.header.HeaderWriterFilter@4ba056ab, org.springframework.security.web.authentication.logout.LogoutFilter@397fced4, de.aikiit.prototype.login.LoginTenantAuthenticationFilter@ace45e9, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@62df1f0e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3d1254b9, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@75c2a35, org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter@605790e5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5c943847, org.springframework.security.web.session.SessionManagementFilter@39da0e47, org.springframework.security.web.access.ExceptionTranslationFilter@4f0b02a3, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@64a0a1c6]
+```
+#### SB3 order
+
+```
+2023-07-31T13:57:59.184+02:00  INFO 218267 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@74fa4891, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@28245839, org.springframework.security.web.context.SecurityContextHolderFilter@207bf6d8, org.springframework.security.web.header.HeaderWriterFilter@19f72e12, org.springframework.web.filter.CorsFilter@640c8cd, org.springframework.security.web.authentication.logout.LogoutFilter@2ba7828b, de.aikiit.prototype3.login.LoginTenantAuthenticationFilter@1e0d70db, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1377b7bf, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3dcc59f5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@16b1dee7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@38950d4b, org.springframework.security.web.access.ExceptionTranslationFilter@1990afa2, org.springframework.security.web.access.intercept.AuthorizationFilter@662754bb]
+```
