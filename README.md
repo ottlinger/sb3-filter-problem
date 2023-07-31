@@ -97,7 +97,7 @@ org.springframework.security.web.session.DisableEncodeUrlFilter@74fa4891,
 org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@28245839,
 org.springframework.security.web.context.SecurityContextHolderFilter@207bf6d8,
 org.springframework.security.web.header.HeaderWriterFilter@19f72e12,
-org.springframework.web.filter.CorsFilter@640c8cd,
+org.springframework.web.filter.CorsFilter@640c8cd, - disabling CORS does not change the situation
 org.springframework.security.web.authentication.logout.LogoutFilter@2ba7828b,
 de.aikiit.prototype3.login.LoginTenantAuthenticationFilter@1e0d70db,
 org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1377b7bf,
