@@ -56,6 +56,7 @@ public class AuthenticationConfiguration {
                         .anyRequest().authenticated()
         );
 
+        http.cors(AbstractHttpConfigurer::disable);
         http.csrf(AbstractHttpConfigurer::disable);
         http.formLogin((formLogin) ->
                 formLogin
