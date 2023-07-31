@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -67,15 +68,18 @@ public class AuthenticationConfiguration {
         ).userDetailsService(userDetailsService);
 
         //.tokenRepository(persistentTokenRepository());
-        //.rememberMe().tokenValiditySeconds(20000)
+        http.rememberMe(Customizer.withDefaults());
         // only SSL: .useSecureCookie(true)
 
-        http.logout().permitAll()
-                .logoutSuccessUrl("/login?success") // does not work with custom handler
-                .logoutSuccessHandler(leaveEventsUponLogoutSuccessHandler)
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .clearAuthentication(true).invalidateHttpSession(true)
-                .deleteCookies("remember-me", "JSESSIONID");
+        http.logout((logoutConfiguration) ->
+            logoutConfiguration.permitAll()
+            .logoutSuccessUrl("/login?success")
+            .logoutSuccessHandler(leaveEventsUponLogoutSuccessHandler)
+            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+            .clearAuthentication(true)
+            .invalidateHttpSession(true)
+            .deleteCookies("remember-me", "JSESSIONID")
+         );
 
         return http.build();
     }
