@@ -48,7 +48,7 @@ public class AuthenticationConfiguration {
 
     @Bean
     @Order(1)
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http, RememberMeServices rememberMeServices) throws Exception {
         http.authorizeHttpRequests((authorizeRequests) ->
                 authorizeRequests
                         .requestMatchers(permitAllUris()).permitAll()
@@ -70,7 +70,6 @@ public class AuthenticationConfiguration {
         http.userDetailsService(userDetailsService);
 
         //.tokenRepository(persistentTokenRepository());
-        http.rememberMe(Customizer.withDefaults());
         // only SSL: .useSecureCookie(true)
 
         http.logout((logoutConfiguration) ->
@@ -83,15 +82,17 @@ public class AuthenticationConfiguration {
             .deleteCookies("remember-me", "JSESSIONID")
          );
 
+        http.rememberMe((remember) -> remember
+   			.rememberMeServices(rememberMeServices)
+    	);
+
+        // 3.2.0 only 
         http.with(Sb3CustomDsl.create(), Customizer.withDefaults());
+        // 3.1.2: http.apply(Sb3CustomDsl.create());
 
         return http.build();
     }
 
-    // TODO .rememberMe((remember) -> remember
-    //				.rememberMeServices(rememberMeServices)
-    //			);
-    // https://docs.spring.io/spring-security/reference/servlet/authentication/rememberme.html
     @Bean
     public PersistentTokenRepository persistentTokenRepository() {
         JdbcTokenRepositoryImpl db = new JdbcTokenRepositoryImpl();
@@ -107,7 +108,7 @@ public class AuthenticationConfiguration {
         return rememberMe;
     }
 
-    public SimpleUrlAuthenticationFailureHandler failureHandler() {
+    SimpleUrlAuthenticationFailureHandler failureHandler() {
         return new SimpleUrlAuthenticationFailureHandler("/login?error");
     }
 }
