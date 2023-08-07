@@ -106,6 +106,10 @@ org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFil
 org.springframework.security.web.access.ExceptionTranslationFilter@1990afa2,
 org.springframework.security.web.access.intercept.AuthorizationFilter@662754bb]
 ```
-## Filed as a spring-boot github issue 
+## 2023-08-04: Filed as a spring-boot github issue
 
-Reported the problem as [#36723](https://github.com/spring-projects/spring-boot/issues/36723)
+Reported the problem as [#36723](https://github.com/spring-projects/spring-boot/issues/36723) - status: was rejected and closed.
+
+## 2023-08-07: Filed as a spring-security github issue
+
+Reported the problem as [#13620](https://github.com/spring-projects/spring-security/issues/13620)
