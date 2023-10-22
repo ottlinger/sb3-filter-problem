@@ -9,3 +9,8 @@ npx cypress open
 
 npm install 
 if run on a different machine
+
+## Launch tests
+
+1. Start filter app via ./mvnw spring-boot:run
+1. npx cypress run
