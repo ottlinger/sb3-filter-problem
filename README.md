@@ -62,6 +62,16 @@ You may use the following combination in order to successfully login:
 | C      |  buser   |    buser |
 | C      |  cuser   |    cuser |
 
+## Added e2e test to automatically check if application is working
+
+In order to show the behaviour during migration to SB3 you may run a e2e test based on [Cypress](https://cypress.io).
+Do not forget to start the Spring Boot application beforehand!
+
+In order to launch the tests, run:
+```
+ npx cypress run
+ ```
+and check the [docs](./cypress-test/SETUP.md) about how to setup the project locally.
 ## Posted on StackOverflow
 
 As Spring Boot does not want questions in Github issues I tried to start a post about the problem at [StackOverflow](https://stackoverflow.com/questions/76799484/usernamepasswordauthenticationfilter-and-simpleurllogoutsuccesshandler-not-worki)
