@@ -182,8 +182,8 @@
         <profile>
             <id>development</id>
             <build>
-                <defaultGoal>clean versions:display-dependency-updates versions:display-plugin-updates
-                    versions:plugin-updates-report enforcer:display-info clover:instrument install
+                <defaultGoal>--v clean versions:display-dependency-updates versions:display-plugin-updates
+                    versions:plugin-updates-report clover:instrument install
                 </defaultGoal>
             </build>
             <dependencies>
