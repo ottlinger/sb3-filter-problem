@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Set up JDK 17
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
@@ -21,8 +21,8 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
       - name: Build SB3-part with Maven
-        run: mvn -B -Pdevelopment enforcer:display-info clean install
+        run: ./mvnw -B -Pdevelopment enforcer:display-info clean install
         working-directory: ./sb3
       - name: Build SB2-part with Maven
-        run: mvn -B -Pdevelopment enforcer:display-info clean install
+        run: ./mvnw -B -Pdevelopment enforcer:display-info clean install
         working-directory: ./sb2
