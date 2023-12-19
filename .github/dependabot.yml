@@ -8,3 +8,7 @@ updates:
     directory: "/sb2"
     schedule:
       interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/cypress-test"
+    schedule:
+      interval: "daily"
