@@ -123,3 +123,7 @@ Reported the problem as [#36723](https://github.com/spring-projects/spring-boot/
 ## 2023-08-07: Filed as a spring-security github issue
 
 Reported the problem as [#13620](https://github.com/spring-projects/spring-security/issues/13620)
+
+## 2024-01-20: Filed an issue with baeldung
+
+Asked for any hints/advice via baeldung [#15697](https://github.com/eugenp/tutorials/issues/15697)
