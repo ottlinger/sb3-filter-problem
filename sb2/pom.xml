@@ -19,7 +19,7 @@
         <java.version>11</java.version>
         <propertiesEncoding>ISO-8859-1</propertiesEncoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <liquibase.version>4.26.0</liquibase.version>
+        <liquibase.version>4.27.0</liquibase.version>
         <testcontainers.version>1.19.7</testcontainers.version>
     </properties>
     <dependencies>
