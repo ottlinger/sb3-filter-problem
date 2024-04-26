@@ -71,7 +71,7 @@ In order to launch the tests, run:
 ```
  npx cypress run
  ```
-and check the [docs](./cypress-test/SETUP.md) about how to setup the project locally.
+and check the [docs](./cypress-test/README.md) about how to setup the project locally.
 ## Posted on StackOverflow
 
 As Spring Boot does not want questions in Github issues I tried to start a post about the problem at [StackOverflow](https://stackoverflow.com/questions/76799484/usernamepasswordauthenticationfilter-and-simpleurllogoutsuccesshandler-not-worki)
