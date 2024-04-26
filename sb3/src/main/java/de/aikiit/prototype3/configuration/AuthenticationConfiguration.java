@@ -1,12 +1,15 @@
 package de.aikiit.prototype3.configuration;
 
 import de.aikiit.prototype3.login.LeaveEventsUponLogoutSuccessHandler;
+import de.aikiit.prototype3.login.LoginTenantAuthenticationFilter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
-import org.springframework.security.config.Customizer;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -15,9 +18,14 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.RememberMeServices;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices;
+import org.springframework.security.web.context.DelegatingSecurityContextRepository;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
+import org.springframework.security.web.context.RequestAttributeSecurityContextRepository;
+import org.springframework.security.web.context.SecurityContextRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
@@ -49,14 +57,19 @@ public class AuthenticationConfiguration {
     @Bean
     @Order(1)
     public SecurityFilterChain filterChain(HttpSecurity http, RememberMeServices rememberMeServices) throws Exception {
+
+	http.addFilterBefore(loginTenantAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+	http.securityContext(
+		(securityContext) -> securityContext.securityContextRepository(securityContextRepository()));
+
         http.authorizeHttpRequests((authorizeRequests) ->
                 authorizeRequests
                         .requestMatchers(permitAllUris()).permitAll()
                         .anyRequest().authenticated()
         );
 
-        http.cors(AbstractHttpConfigurer::disable);
-        http.csrf(AbstractHttpConfigurer::disable);
+	http.cors(AbstractHttpConfigurer::disable);
+	http.csrf(AbstractHttpConfigurer::disable);
 
         http.formLogin((formLogin) ->
                 formLogin
@@ -67,10 +80,10 @@ public class AuthenticationConfiguration {
 
         );
 
-        http.userDetailsService(userDetailsService);
+	http.userDetailsService(userDetailsService);
 
-        //.tokenRepository(persistentTokenRepository());
-        // only SSL: .useSecureCookie(true)
+	// .tokenRepository(persistentTokenRepository());
+	// only SSL: .useSecureCookie(true)
 
         http.logout((logoutConfiguration) ->
             logoutConfiguration.permitAll()
@@ -86,29 +99,47 @@ public class AuthenticationConfiguration {
    			.rememberMeServices(rememberMeServices)
     	);
 
-        // 3.2.0 only 
-        http.with(Sb3CustomDsl.create(), Customizer.withDefaults());
-        // 3.1.2: http.apply(Sb3CustomDsl.create());
+	return http.build();
+    }
 
-        return http.build();
+    @Bean
+    public LoginTenantAuthenticationFilter loginTenantAuthenticationFilter() throws Exception {
+	final LoginTenantAuthenticationFilter filter = new LoginTenantAuthenticationFilter();
+	filter.setAuthenticationManager(authenticationManager(null));
+	filter.setSecurityContextRepository(securityContextRepository());
+	filter.setAuthenticationFailureHandler(failureHandler());
+	return filter;
+    }
+
+    @Bean
+    public SecurityContextRepository securityContextRepository() {
+	return new DelegatingSecurityContextRepository(new RequestAttributeSecurityContextRepository(),
+		new HttpSessionSecurityContextRepository());
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(final HttpSecurity http) throws Exception {
+	return http.getSharedObject(AuthenticationManagerBuilder.class).build();
     }
 
     @Bean
     public PersistentTokenRepository persistentTokenRepository() {
-        JdbcTokenRepositoryImpl db = new JdbcTokenRepositoryImpl();
-        db.setDataSource(dataSource);
-        return db;
+	JdbcTokenRepositoryImpl db = new JdbcTokenRepositoryImpl();
+	db.setDataSource(dataSource);
+	return db;
     }
 
     @Bean
-    RememberMeServices rememberMeServices(@Autowired UserDetailsService userDetailsService) {
-        TokenBasedRememberMeServices.RememberMeTokenAlgorithm encodingAlgorithm = TokenBasedRememberMeServices.RememberMeTokenAlgorithm.SHA256;
-        TokenBasedRememberMeServices rememberMe = new TokenBasedRememberMeServices("myKey", userDetailsService, encodingAlgorithm);
-        rememberMe.setMatchingAlgorithm(TokenBasedRememberMeServices.RememberMeTokenAlgorithm.MD5);
-        return rememberMe;
+    public RememberMeServices rememberMeServices(@Autowired final UserDetailsService userDetailsService) {
+	TokenBasedRememberMeServices.RememberMeTokenAlgorithm encodingAlgorithm = TokenBasedRememberMeServices.RememberMeTokenAlgorithm.SHA256;
+	TokenBasedRememberMeServices rememberMe = new TokenBasedRememberMeServices("myKey", userDetailsService,
+		encodingAlgorithm);
+	rememberMe.setMatchingAlgorithm(TokenBasedRememberMeServices.RememberMeTokenAlgorithm.MD5);
+	return rememberMe;
     }
 
-    SimpleUrlAuthenticationFailureHandler failureHandler() {
-        return new SimpleUrlAuthenticationFailureHandler("/login?error");
+    @Bean
+    public SimpleUrlAuthenticationFailureHandler failureHandler() {
+	return new SimpleUrlAuthenticationFailureHandler("/login?error");
     }
 }
