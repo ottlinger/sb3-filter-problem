@@ -127,3 +127,8 @@ Reported the problem as [#13620](https://github.com/spring-projects/spring-secur
 ## 2024-01-20: Filed an issue with baeldung
 
 Asked for any hints/advice via baeldung [#15697](https://github.com/eugenp/tutorials/issues/15697)
+
+## 2024-04-23: Issue solved with the help of GlenErrands
+
+GlenErrands analysed the problem and found a possible solution via intense debugging sessions.
+Big kudos and thanks for providing a solution the the problem via [PR#106](https://github.com/ottlinger/sb3-filter-problem/pull/106).
