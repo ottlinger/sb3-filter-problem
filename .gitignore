@@ -1,3 +1,4 @@
+**/cypress/videos**
 .vscode
 *.iml
 .idea
