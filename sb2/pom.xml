@@ -20,7 +20,7 @@
         <propertiesEncoding>ISO-8859-1</propertiesEncoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <liquibase.version>4.32.0</liquibase.version>
-        <testcontainers.version>1.21.2</testcontainers.version>
+        <testcontainers.version>1.21.3</testcontainers.version>
     </properties>
     <dependencies>
         <dependency>
