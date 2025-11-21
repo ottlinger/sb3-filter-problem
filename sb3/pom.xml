@@ -5,15 +5,15 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.5.0</version>
+        <version>4.0.0</version>
         <relativePath/>
         <!-- lookup parent from repository -->
     </parent>
     <groupId>de.aikiit.prototype</groupId>
-    <artifactId>sb3-portal</artifactId>
+    <artifactId>sb4-portal</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <name>my-portal-sb3</name>
-    <description>SB3-Application</description>
+    <name>my-portal-sb4</name>
+    <description>SB4-Application</description>
     <inceptionYear>2020</inceptionYear>
     <properties>
         <java.version>17</java.version>
@@ -119,21 +119,17 @@
             <groupId>org.thymeleaf.extras</groupId>
             <artifactId>thymeleaf-extras-springsecurity6</artifactId>
         </dependency>
-        <!-- until https://github.com/thymeleaf/thymeleaf/issues/921 is fixed an 3.1.0.RC2 is out -->
         <dependency>
             <groupId>org.thymeleaf</groupId>
             <artifactId>thymeleaf</artifactId>
-            <!-- no explicit version>3.1.1.RELEASE</version -->
-        </dependency>
-        <!-- TODO Remove before prod deployment https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-3.0-Migration-Guide - property migration guide -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-properties-migrator</artifactId>
-            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -186,19 +182,35 @@
                 <artifactId>taglist-maven-plugin</artifactId>
                 <version>3.2.1</version>
                 <configuration>
-                    <encoding>${project.build.sourceEncoding}</encoding>
-                    <tags>
-                        <tag>TODO</tag>
-                        <tag>todo</tag>
-                        <tag>FIXME</tag>
-                        <tag>fixme</tag>
-                        <tag>REFACTOR</tag>
-                        <tag>refactor</tag>
-                        <tag>REVIEW</tag>
-                        <tag>review</tag>
-                        <tag>@todo</tag>
-                        <tag>@deprecated</tag>
-                    </tags>
+                    <tagListOptions>
+                        <tagClasses>
+                            <tagClass>
+                                <displayName>Code Work</displayName>
+                                <tags>
+                                    <tag>
+                                        <matchString>TODO</matchString>
+                                        <matchType>ignoreCase</matchType>
+                                    </tag>
+                                    <tag>
+                                        <matchString>FIXME</matchString>
+                                        <matchType>ignoreCase</matchType>
+                                    </tag>
+                                    <tag>
+                                        <matchString>REFACTOR</matchString>
+                                        <matchType>ignoreCase</matchType>
+                                    </tag>
+                                    <tag>
+                                        <matchString>REVIEW</matchString>
+                                        <matchType>ignoreCase</matchType>
+                                    </tag>
+                                    <tag>
+                                        <matchString>deprecated</matchString>
+                                        <matchType>ignoreCase</matchType>
+                                    </tag>
+                                </tags>
+                            </tagClass>
+                        </tagClasses>
+                    </tagListOptions>
                 </configuration>
             </plugin>
         </plugins>
@@ -346,7 +358,7 @@
                         <configuration>
                             <rules>
                                 <requireMavenVersion>
-                                    <version>3.5.0</version>
+                                    <version>3.6.3</version>
                                 </requireMavenVersion>
                             </rules>
                         </configuration>

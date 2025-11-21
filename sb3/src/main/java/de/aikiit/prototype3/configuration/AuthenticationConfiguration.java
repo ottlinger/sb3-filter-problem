@@ -26,7 +26,7 @@ import org.springframework.security.web.context.DelegatingSecurityContextReposit
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.security.web.context.RequestAttributeSecurityContextRepository;
 import org.springframework.security.web.context.SecurityContextRepository;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.servlet.util.matcher.PathPatternRequestMatcher;
 
 import javax.sql.DataSource;
 import java.util.List;
@@ -89,7 +89,7 @@ public class AuthenticationConfiguration {
             logoutConfiguration.permitAll()
             .logoutSuccessUrl("/login?success")
             .logoutSuccessHandler(leaveEventsUponLogoutSuccessHandler)
-            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+            .logoutRequestMatcher(PathPatternRequestMatcher.withDefaults().matcher("/logout"))
             .clearAuthentication(true)
             .invalidateHttpSession(true)
             .deleteCookies("remember-me", "JSESSIONID")

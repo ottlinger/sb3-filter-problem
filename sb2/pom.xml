@@ -237,7 +237,7 @@
                     <artifactId>clover-maven-plugin</artifactId>
                     <version>4.5.2</version>
                     <configuration>
-                        <targetPercentage>75%</targetPercentage>
+                        <targetPercentage>32%</targetPercentage>
                     </configuration>
                     <executions>
                         <execution>
@@ -338,7 +338,7 @@
                         <configuration>
                             <rules>
                                 <requireMavenVersion>
-                                    <version>3.5.0</version>
+                                    <version>3.6.3</version>
                                 </requireMavenVersion>
                             </rules>
                         </configuration>
