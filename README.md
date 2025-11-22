@@ -1,7 +1,7 @@
 # sb3-filter-problem
-Repo to analyze problems during migration from SpringBoot2 (SB2) to SpringBoot3 (SB3).
+Repo to analyze problems during migration from SpringBoot2 (SB2) via SB3 (old release) to SpringBoot4 (SB4).
 
-The SB2 application works fine, but SB3 does not allow a login ....
+The SB2 application works fine, SB3 needs a special fix (Thanks to GlenErrand!) and SB4 is to verify changes are still working properly ....
 
 The self-contained example-app has 3 elements for login (tenant, username and password) and a specific logout handler to perform operations upon successful logout.
 H2 is used as a database and data structures are created via liquibase.
@@ -10,9 +10,9 @@ Both apps contain no tests as they are taken and adapted from a different (priva
 
 [![GH Actions Status](https://github.com/ottlinger/sb3-filter-problem/workflows/JavaCI/badge.svg)](https://github.com/ottlinger/sb3-filter-problem/actions)
 
-## Feature comparison between SB2 and SB3 and quick links into the code
+## Feature comparison between SB2 and SB4 and quick links into the code
 
-| Description                                                                                         |                                                         SB2 - 2.8.x                                                          | SB3 - 3.3.x                                                                                                                 | Status SB2  |   Status SB3   |
+| Description                                                                                         |                                                         SB2 - 2.8.x                                                          | SB4 - 4.0.x                                                                                                                 | Status SB2  |   Status SB4   |
 |:----------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------|:-----------:|:--------------:|
 | i18n via property files                                                                             |                                                                                                                               |                                                                                                                                | 👍 working  |   👍 working   |
 | ApplicationUser to encapsulate tenant, user, password for login                                     |                     [ApplicationUser](./sb2/src/main/java/de/aikiit/prototype/user/ApplicationUser.java)                      | [ApplicationUser](./sb3/src/main/java/de/aikiit/prototype3/user/ApplicationUser.java)                                          | 👍 working  |   👍 working   |
@@ -36,10 +36,10 @@ Launch the app via [localhost:8080](http://localhost:8080)
 and log in.
 After a successful login you may logout again.
 
-### Problematic application with SB3
+### Problematic application with SB4
 
 ```
-cd sb3
+cd sb4
 ./mvnw spring-boot:run
 ```
 Launch the app via [localhost:8080](http://localhost:8080)
@@ -132,3 +132,7 @@ Asked for any hints/advice via baeldung [#15697](https://github.com/eugenp/tutor
 
 GlenErrands analysed the problem and found a possible solution via intense debugging sessions.
 Big kudos and thanks for providing a solution the the problem via [PR#106](https://github.com/ottlinger/sb3-filter-problem/pull/106).
+
+## 2025-11-22: Started migrating of SB3 part to SB4
+
+In order to show that the principles applied to the SB3 part are still working with SB4 I started a migration.
