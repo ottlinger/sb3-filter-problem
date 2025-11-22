@@ -1,6 +1,6 @@
-package de.aikiit.prototype3.login;
+package de.aikiit.prototype4.login;
 
-import de.aikiit.prototype3.user.ApplicationUser;
+import de.aikiit.prototype4.user.ApplicationUser;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

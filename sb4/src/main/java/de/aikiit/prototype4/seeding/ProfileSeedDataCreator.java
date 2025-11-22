@@ -1,14 +1,14 @@
-package de.aikiit.prototype3.seeding;
+package de.aikiit.prototype4.seeding;
 
-import de.aikiit.prototype3.tenant.Role;
-import de.aikiit.prototype3.user.RoleRepository;
+import de.aikiit.prototype4.tenant.Role;
+import de.aikiit.prototype4.user.RoleRepository;
 import jakarta.validation.constraints.NotNull;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 import java.util.Optional;
 
-import static de.aikiit.prototype3.seeding.BootstrapDataCreator.ROLE_PREFIX;
+import static de.aikiit.prototype4.seeding.BootstrapDataCreator.ROLE_PREFIX;
 
 @Slf4j
 public class ProfileSeedDataCreator {

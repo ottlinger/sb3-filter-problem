@@ -1,6 +1,6 @@
-package de.aikiit.prototype3.user;
+package de.aikiit.prototype4.user;
 
-import de.aikiit.prototype3.tenant.Role;
+import de.aikiit.prototype4.tenant.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

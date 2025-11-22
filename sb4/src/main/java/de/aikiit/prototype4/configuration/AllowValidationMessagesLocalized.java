@@ -1,4 +1,4 @@
-package de.aikiit.prototype3.configuration;
+package de.aikiit.prototype4.configuration;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;

@@ -1,6 +1,6 @@
-package de.aikiit.prototype3.tenant;
+package de.aikiit.prototype4.tenant;
 
-import de.aikiit.prototype3.user.User;
+import de.aikiit.prototype4.user.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

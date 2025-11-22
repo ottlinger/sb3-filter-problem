@@ -109,7 +109,7 @@ org.springframework.security.web.context.SecurityContextHolderFilter@207bf6d8,
 org.springframework.security.web.header.HeaderWriterFilter@19f72e12,
 org.springframework.web.filter.CorsFilter@640c8cd, - disabling CORS does not change the situation
 org.springframework.security.web.authentication.logout.LogoutFilter@2ba7828b,
-de.aikiit.prototype3.login.LoginTenantAuthenticationFilter@1e0d70db,
+de.aikiit.prototype4.login.LoginTenantAuthenticationFilter@1e0d70db,
 org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1377b7bf,
 org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3dcc59f5,
 org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@16b1dee7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@38950d4b,

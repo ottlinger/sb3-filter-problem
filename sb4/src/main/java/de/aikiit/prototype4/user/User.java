@@ -1,7 +1,7 @@
-package de.aikiit.prototype3.user;
+package de.aikiit.prototype4.user;
 
-import de.aikiit.prototype3.tenant.Role;
-import de.aikiit.prototype3.tenant.Tenant;
+import de.aikiit.prototype4.tenant.Role;
+import de.aikiit.prototype4.tenant.Tenant;
 import jakarta.persistence.*;
 import lombok.*;
 

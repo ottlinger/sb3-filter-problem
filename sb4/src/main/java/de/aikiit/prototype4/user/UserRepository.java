@@ -1,4 +1,4 @@
-package de.aikiit.prototype3.user;
+package de.aikiit.prototype4.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

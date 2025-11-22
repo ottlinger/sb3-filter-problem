@@ -1,4 +1,4 @@
-package de.aikiit.prototype3.user;
+package de.aikiit.prototype4.user;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;

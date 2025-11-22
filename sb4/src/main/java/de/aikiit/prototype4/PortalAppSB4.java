@@ -1,4 +1,4 @@
-package de.aikiit.prototype3;
+package de.aikiit.prototype4;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
@@ -10,10 +10,10 @@ import java.util.stream.Stream;
 
 @SpringBootApplication
 @Slf4j
-public class PortalAppSB3 {
+public class PortalAppSB4 {
 
     public static void main(String[] args) {
-        ApplicationContext applicationContext = SpringApplication.run(PortalAppSB3.class, args);
+        ApplicationContext applicationContext = SpringApplication.run(PortalAppSB4.class, args);
 
         log.info("Started application with {} beans", applicationContext.getBeanDefinitionCount());
         final Stream<String> sorted = Arrays.stream(applicationContext.getBeanDefinitionNames()).sorted();

@@ -1,10 +1,10 @@
-package de.aikiit.prototype3;
+package de.aikiit.prototype4;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class PortalAppSB3Test {
+class PortalAppSB4Test {
     @Test
     void contextLoads() {
     }

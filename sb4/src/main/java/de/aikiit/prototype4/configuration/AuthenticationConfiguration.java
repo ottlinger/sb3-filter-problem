@@ -1,7 +1,7 @@
-package de.aikiit.prototype3.configuration;
+package de.aikiit.prototype4.configuration;
 
-import de.aikiit.prototype3.login.LeaveEventsUponLogoutSuccessHandler;
-import de.aikiit.prototype3.login.LoginTenantAuthenticationFilter;
+import de.aikiit.prototype4.login.LeaveEventsUponLogoutSuccessHandler;
+import de.aikiit.prototype4.login.LoginTenantAuthenticationFilter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

@@ -1,4 +1,4 @@
-package de.aikiit.prototype3.user;
+package de.aikiit.prototype4.user;
 
 import lombok.Builder;
 import lombok.Data;

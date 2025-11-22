@@ -1,4 +1,4 @@
-package de.aikiit.prototype3.tenant;
+package de.aikiit.prototype4.tenant;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

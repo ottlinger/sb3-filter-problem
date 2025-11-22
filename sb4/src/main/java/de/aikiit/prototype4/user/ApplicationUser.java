@@ -1,4 +1,4 @@
-package de.aikiit.prototype3.user;
+package de.aikiit.prototype4.user;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;

@@ -1,11 +1,11 @@
-package de.aikiit.prototype3.seeding;
+package de.aikiit.prototype4.seeding;
 
-import de.aikiit.prototype3.tenant.Role;
-import de.aikiit.prototype3.tenant.Tenant;
-import de.aikiit.prototype3.tenant.TenantRepository;
-import de.aikiit.prototype3.user.RoleRepository;
-import de.aikiit.prototype3.user.User;
-import de.aikiit.prototype3.user.UserRepository;
+import de.aikiit.prototype4.tenant.Role;
+import de.aikiit.prototype4.tenant.Tenant;
+import de.aikiit.prototype4.tenant.TenantRepository;
+import de.aikiit.prototype4.user.RoleRepository;
+import de.aikiit.prototype4.user.User;
+import de.aikiit.prototype4.user.UserRepository;
 import jakarta.validation.constraints.NotNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-import static de.aikiit.prototype3.seeding.BootstrapDataCreator.ROLE_PREFIX;
+import static de.aikiit.prototype4.seeding.BootstrapDataCreator.ROLE_PREFIX;
 
 @SuppressWarnings("OptionalGetWithoutIsPresent")
 @Slf4j
