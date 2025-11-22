@@ -34,7 +34,7 @@ cd sb2
 ```
 Launch the app via [localhost:8080](http://localhost:8080)
 and log in.
-After a successful login you may logout again.
+After a successful login you may log out again.
 
 ### Problematic application with SB4
 
@@ -64,17 +64,17 @@ You may use the following combination in order to successfully login:
 
 ## Added e2e test to automatically check if application is working
 
-In order to show the behaviour during migration to SB3 you may run a e2e test based on [Cypress](https://cypress.io).
+In order to show the behaviour during migration to SB3 you may run an e2e test based on [Cypress](https://cypress.io).
 Do not forget to start the Spring Boot application beforehand!
 
 In order to launch the tests, run:
 ```
  npx cypress run
  ```
-and check the [docs](./cypress-test/README.md) about how to setup the project locally.
+and check the [docs](./cypress-test/README.md) about how to set up the project locally.
 ## Posted on StackOverflow
 
-As Spring Boot does not want questions in Github issues I tried to start a post about the problem at [StackOverflow](https://stackoverflow.com/questions/76799484/usernamepasswordauthenticationfilter-and-simpleurllogoutsuccesshandler-not-worki)
+As Spring Boot does not want questions in GitHub issues I tried to start a post about the problem at [StackOverflow](https://stackoverflow.com/questions/76799484/usernamepasswordauthenticationfilter-and-simpleurllogoutsuccesshandler-not-worki)
 
 ### 2023-07-31 Order of filters
 
@@ -131,7 +131,7 @@ Asked for any hints/advice via baeldung [#15697](https://github.com/eugenp/tutor
 ## 2024-04-23: Issue solved with the help of GlenErrands
 
 GlenErrands analysed the problem and found a possible solution via intense debugging sessions.
-Big kudos and thanks for providing a solution the the problem via [PR#106](https://github.com/ottlinger/sb3-filter-problem/pull/106).
+Big kudos and thanks for providing a solution to the problem via [PR#106](https://github.com/ottlinger/sb3-filter-problem/pull/106).
 
 ## 2025-11-22: Started migrating of SB3 part to SB4
 
