@@ -3,7 +3,6 @@ package de.aikiit.prototype4.login;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.lang.Nullable;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -18,7 +17,7 @@ public class LoginTenantAuthenticationFilter extends UsernamePasswordAuthenticat
     private static final String DELIMITER = String.valueOf(Character.LINE_SEPARATOR);
 
     // for testing and consistent usage
-    public static String toUserNameWithTenant(@Nullable String userName, @Nullable String tenantName) {
+    public static String toUserNameWithTenant(String userName, String tenantName) {
         if (userName == null) {
             userName = "";
         }

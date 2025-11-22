@@ -67,10 +67,13 @@ public class UserSeedDataCreator {
                 System.exit(-1);
             }
 
-            log.info("Bootstrapping example users");
+
+            Tenant t = targetTenant.get();
             for (String username : USERS) {
-                log.info("User: {}", userRepository.save(User.builder().organisation(targetTenant.get()).fullName("Fullname " + username).userName(username).passwordHash(encryptPassword(username)).roles(Arrays.asList(user, admin)).build()));
-                log.info("Tenant {} is running with bootstrapped user {}", tenant, username);
+                log.info("Creating user {} in tenant {}", username, t.getName());
+                User u = User.builder().organisation(targetTenant.get()).fullName("Fullname " + username).userName(username).passwordHash(encryptPassword(username)).roles(Arrays.asList(user, admin)).build();
+                log.info("User: {}", userRepository.saveAndFlush(u));
+                log.info("Tenant {} supplied with bootstrapped user {}.", t.getName(), username);
             }
         }
         log.info("USER - Bootstrapping finished");
