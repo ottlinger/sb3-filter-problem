@@ -227,6 +227,9 @@
                     versions:plugin-updates-report clover:clover install
                 </defaultGoal>
             </build>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <dependencies>
                 <dependency>
                     <groupId>org.springframework.boot</groupId>
@@ -245,9 +248,6 @@
             <build>
                 <defaultGoal>clean install</defaultGoal>
             </build>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
             <properties>
                 <maven.test.skip>true</maven.test.skip>
             </properties>
