@@ -71,8 +71,8 @@ public class UserSeedDataCreator {
             Tenant t = targetTenant.get();
             User u;
             for (String username : USERS) {
-                log.info("Creating user {} in tenant {}", username, t);
-                u = User.builder().organisation(targetTenant.get()).fullName("Fullname " + username).userName(username).passwordHash(encryptPassword(username)).roles(Arrays.asList(user, admin)).build();
+                log.info("Creating user {} in tenant {}", username, t.getName());
+                u = User.builder().organisation(t).fullName("Fullname " + username).userName(username).passwordHash(encryptPassword(username)).roles(Arrays.asList(user, admin)).build();
                 log.info("User: {}", userRepository.save(u));
                 log.info("Tenant {} supplied with bootstrapped user {}.", t.getName(), username);
             }
