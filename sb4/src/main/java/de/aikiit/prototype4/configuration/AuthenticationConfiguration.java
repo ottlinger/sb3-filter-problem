@@ -74,7 +74,7 @@ public class AuthenticationConfiguration {
         http.formLogin((formLogin) ->
                 formLogin
                         .loginPage("/login")
-                        // .defaultSuccessUrl("/")
+                        .defaultSuccessUrl("/")
                         .failureHandler(failureHandler())
                         .permitAll()
 
