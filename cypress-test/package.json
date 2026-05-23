@@ -1,4 +1,5 @@
 {
+  "name": "cypress-test",
   "devDependencies": {
     "cypress": "^13.14.2"
   }
