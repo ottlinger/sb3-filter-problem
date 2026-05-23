@@ -1,7 +1,7 @@
 # sb3-filter-problem
-Repo to analyze problems during migration from SpringBoot2 (SB2) to SpringBoot3 (SB3).
+Repo to analyze problems during migration from SpringBoot2 (SB2) via SB3 (old release) to SpringBoot4 (SB4).
 
-The SB2 application works fine, but SB3 does not allow a login ....
+The SB2 application works fine, SB3 needs a special fix (Thanks to GlenErrand!) and SB4 is to verify changes are still working properly ....
 
 The self-contained example-app has 3 elements for login (tenant, username and password) and a specific logout handler to perform operations upon successful logout.
 H2 is used as a database and data structures are created via liquibase.
@@ -10,9 +10,9 @@ Both apps contain no tests as they are taken and adapted from a different (priva
 
 [![GH Actions Status](https://github.com/ottlinger/sb3-filter-problem/workflows/JavaCI/badge.svg)](https://github.com/ottlinger/sb3-filter-problem/actions)
 
-## Feature comparison between SB2 and SB3 and quick links into the code
+## Feature comparison between SB2 and SB4 and quick links into the code
 
-| Description                                                                                         |                                                         SB2 - 2.8.x                                                          | SB3 - 3.3.x                                                                                                                 | Status SB2  |   Status SB3   |
+| Description                                                                                         |                                                         SB2 - 2.8.x                                                          | SB4 - 4.0.x                                                                                                                 | Status SB2  |   Status SB4   |
 |:----------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------|:-----------:|:--------------:|
 | i18n via property files                                                                             |                                                                                                                               |                                                                                                                                | 👍 working  |   👍 working   |
 | ApplicationUser to encapsulate tenant, user, password for login                                     |                     [ApplicationUser](./sb2/src/main/java/de/aikiit/prototype/user/ApplicationUser.java)                      | [ApplicationUser](./sb3/src/main/java/de/aikiit/prototype3/user/ApplicationUser.java)                                          | 👍 working  |   👍 working   |
@@ -34,12 +34,12 @@ cd sb2
 ```
 Launch the app via [localhost:8080](http://localhost:8080)
 and log in.
-After a successful login you may logout again.
+After a successful login you may log out again.
 
-### Problematic application with SB3
+### Problematic application with SB4
 
 ```
-cd sb3
+cd sb4
 ./mvnw spring-boot:run
 ```
 Launch the app via [localhost:8080](http://localhost:8080)
@@ -64,17 +64,17 @@ You may use the following combination in order to successfully login:
 
 ## Added e2e test to automatically check if application is working
 
-In order to show the behaviour during migration to SB3 you may run a e2e test based on [Cypress](https://cypress.io).
+In order to show the behaviour during migration to SB3 you may run an e2e test based on [Cypress](https://cypress.io).
 Do not forget to start the Spring Boot application beforehand!
 
 In order to launch the tests, run:
 ```
  npx cypress run
  ```
-and check the [docs](./cypress-test/README.md) about how to setup the project locally.
+and check the [docs](./cypress-test/README.md) about how to set up the project locally.
 ## Posted on StackOverflow
 
-As Spring Boot does not want questions in Github issues I tried to start a post about the problem at [StackOverflow](https://stackoverflow.com/questions/76799484/usernamepasswordauthenticationfilter-and-simpleurllogoutsuccesshandler-not-worki)
+As Spring Boot does not want questions in GitHub issues I tried to start a post about the problem at [StackOverflow](https://stackoverflow.com/questions/76799484/usernamepasswordauthenticationfilter-and-simpleurllogoutsuccesshandler-not-worki)
 
 ### 2023-07-31 Order of filters
 
@@ -109,7 +109,7 @@ org.springframework.security.web.context.SecurityContextHolderFilter@207bf6d8,
 org.springframework.security.web.header.HeaderWriterFilter@19f72e12,
 org.springframework.web.filter.CorsFilter@640c8cd, - disabling CORS does not change the situation
 org.springframework.security.web.authentication.logout.LogoutFilter@2ba7828b,
-de.aikiit.prototype3.login.LoginTenantAuthenticationFilter@1e0d70db,
+de.aikiit.prototype4.login.LoginTenantAuthenticationFilter@1e0d70db,
 org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1377b7bf,
 org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3dcc59f5,
 org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@16b1dee7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@38950d4b,
@@ -131,4 +131,38 @@ Asked for any hints/advice via baeldung [#15697](https://github.com/eugenp/tutor
 ## 2024-04-23: Issue solved with the help of GlenErrands
 
 GlenErrands analysed the problem and found a possible solution via intense debugging sessions.
-Big kudos and thanks for providing a solution the the problem via [PR#106](https://github.com/ottlinger/sb3-filter-problem/pull/106).
+Big kudos and thanks for providing a solution to the problem via [PR#106](https://github.com/ottlinger/sb3-filter-problem/pull/106).
+
+## 2025-11-22: Started migrating of SB3 part to SB4
+
+In order to show that the principles applied to the SB3 part are still working with SB4 I started a migration.
+
+## 2026-05-23: After having a look at it with OpenAI
+
+Why it worked before:
+
+* Hibernate 5/6 generated different FK DDL
+* Hibernate 7 now emits stricter uniqueness constraints for some associations
+
+Major change in application.properties:
+
+```
+# Issue #332: Problem in SB4: spring.jpa.hibernate.ddl-auto=create-drop
+# as Hibernate creates a new unique constraint on tenant that breaks the seeding code
+spring.jpa.hibernate.ddl-auto=validate
+```
+Hibernate 7 generated an additional unique constraint on the FK column that conflicted with your intended composite uniqueness constraint.
+
+The safest setup going forward is usually:
+
+```
+spring.jpa.hibernate.ddl-auto=validate
+```
+
+That gives you:
+
+* Liquibase as the single source of truth
+* Hibernate still validating mappings against the schema
+* no accidental schema mutations during startup
+
+That also avoids subtle upgrade surprises between Hibernate versions.

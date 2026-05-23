@@ -4,24 +4,32 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.7.18</version>
+    <version>4.1.0-M4</version>
     <relativePath/>
     <!-- lookup parent from repository -->
   </parent>
   <groupId>de.aikiit.prototype</groupId>
-  <artifactId>sb2-portal</artifactId>
+  <artifactId>sb4-portal</artifactId>
   <version>1.0.0-SNAPSHOT</version>
-  <name>my-portal-sb2</name>
-  <description>SB2-Application</description>
+  <name>my-portal-sb4</name>
+  <description>SB4-Application</description>
   <inceptionYear>2020</inceptionYear>
   <properties>
-    <java.version>11</java.version>
+    <java.version>17</java.version>
     <propertiesEncoding>ISO-8859-1</propertiesEncoding>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <liquibase.version>5.0.1</liquibase.version>
     <testcontainers.version>1.21.3</testcontainers.version>
-    <lombok.version>1.18.46</lombok.version>
   </properties>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.apache.maven.plugin-tools</groupId>
+        <artifactId>maven-plugin-annotations</artifactId>
+        <version>3.15.2</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
   <dependencies>
     <dependency>
       <groupId>com.h2database</groupId>
@@ -108,7 +116,19 @@
     </dependency>
     <dependency>
       <groupId>org.thymeleaf.extras</groupId>
-      <artifactId>thymeleaf-extras-springsecurity5</artifactId>
+      <artifactId>thymeleaf-extras-springsecurity6</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.thymeleaf</groupId>
+      <artifactId>thymeleaf</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-config</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-web</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -118,8 +138,6 @@
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>${lombok.version}</version>
-      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -144,6 +162,10 @@
       <groupId>org.apache.poi</groupId>
       <artifactId>poi-ooxml</artifactId>
       <version>5.4.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-liquibase</artifactId>
     </dependency>
   </dependencies>
   <reporting>
@@ -200,9 +222,12 @@
       <id>development</id>
       <build>
         <defaultGoal>clean versions:display-dependency-updates versions:display-plugin-updates
-                    versions:plugin-updates-report clover:instrument install
+                    versions:plugin-updates-report clover:clover install
                 </defaultGoal>
       </build>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
       <dependencies>
         <dependency>
           <groupId>org.springframework.boot</groupId>
@@ -221,9 +246,6 @@
       <build>
         <defaultGoal>clean install</defaultGoal>
       </build>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
       <properties>
         <maven.test.skip>true</maven.test.skip>
       </properties>
@@ -234,28 +256,11 @@
     <pluginManagement>
       <plugins>
         <plugin>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.14.1</version>
-          <configuration>
-            <encoding>${encoding.utf8}</encoding>
-            <source>${java.version}</source>
-            <target>${java.version}</target>
-            <release>${java.version}</release>
-            <annotationProcessorPaths>
-              <path>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>${lombok.version}</version>
-              </path>
-            </annotationProcessorPaths>
-          </configuration>
-        </plugin>
-        <plugin>
           <groupId>org.openclover</groupId>
           <artifactId>clover-maven-plugin</artifactId>
           <version>4.5.2</version>
           <configuration>
-            <targetPercentage>32%</targetPercentage>
+            <targetPercentage>75%</targetPercentage>
           </configuration>
           <executions>
             <execution>
@@ -324,12 +329,11 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.5.4</version>
         <configuration>
-          <systemProperties>
-            <property>
-              <name>clover.server</name>
-              <value>true</value>
-            </property>
-          </systemProperties>
+          <forkCount>2</forkCount>
+          <reuseForks>true</reuseForks>
+          <systemPropertyVariables>
+            <clover.server>true</clover.server>
+          </systemPropertyVariables>
         </configuration>
         <executions>
           <execution>
@@ -343,6 +347,22 @@
             </configuration>
           </execution>
         </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.14.1</version>
+        <configuration>
+          <encoding>${encoding.utf8}</encoding>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+          <release>${java.version}</release>
+          <annotationProcessorPaths>
+            <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+            </path>
+          </annotationProcessorPaths>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -400,8 +420,6 @@
               <additionalProperties>
                 <encoding.source>UTF-8</encoding.source>
                 <encoding.reporting>UTF-8</encoding.reporting>
-                <java.source>${maven.compiler.source}</java.source>
-                <java.target>${maven.compiler.target}</java.target>
               </additionalProperties>
             </configuration>
           </execution>
@@ -437,4 +455,32 @@
       </plugin>
     </plugins>
   </build>
+  <repositories>
+    <repository>
+      <id>spring-milestones</id>
+      <name>Spring Milestones</name>
+      <url>https://repo.spring.io/milestone</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>sonatype-nexus-snapshots</id>
+      <name>Sonatype Nexus Snapshots</name>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>spring-milestones</id>
+      <name>Spring Milestones</name>
+      <url>https://repo.spring.io/milestone</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
 </project>
