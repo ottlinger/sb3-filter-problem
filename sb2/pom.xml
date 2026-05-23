@@ -20,6 +20,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <liquibase.version>5.0.1</liquibase.version>
     <testcontainers.version>1.21.3</testcontainers.version>
+    <lombok.version>1.8.46</lombok.version>
   </properties>
   <dependencies>
     <dependency>
@@ -117,7 +118,7 @@
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>1.18.46</version>
+      <version>${lombok.version}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -244,7 +245,7 @@
               <path>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
-                <version>1.18.46</version>
+                <version>${lombok.version}</version>
               </path>
             </annotationProcessorPaths>
           </configuration>
