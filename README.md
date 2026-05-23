@@ -136,3 +136,19 @@ Big kudos and thanks for providing a solution to the problem via [PR#106](https:
 ## 2025-11-22: Started migrating of SB3 part to SB4
 
 In order to show that the principles applied to the SB3 part are still working with SB4 I started a migration.
+
+## 2026-05-23: After having a look at it with OpenAI
+
+Why it worked before:
+
+* Hibernate 5/6 generated different FK DDL
+* Hibernate 7 now emits stricter uniqueness constraints for some associations
+
+Major change in application.properties:
+
+```
+# Issue #332: Problem in SB4: spring.jpa.hibernate.ddl-auto=create-drop
+# as Hibernate creates a new unique constraint on tenant that breaks the seeding code
+spring.jpa.hibernate.ddl-auto=validate
+```
+
