@@ -151,4 +151,18 @@ Major change in application.properties:
 # as Hibernate creates a new unique constraint on tenant that breaks the seeding code
 spring.jpa.hibernate.ddl-auto=validate
 ```
+Hibernate 7 generated an additional unique constraint on the FK column that conflicted with your intended composite uniqueness constraint.
 
+The safest setup going forward is usually:
+
+```
+spring.jpa.hibernate.ddl-auto=validate
+```
+
+That gives you:
+
+* Liquibase as the single source of truth
+* Hibernate still validating mappings against the schema
+* no accidental schema mutations during startup
+
+That also avoids subtle upgrade surprises between Hibernate versions.
