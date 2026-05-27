@@ -1,6 +1,6 @@
 {
   "name": "cypress-test",
   "devDependencies": {
-    "cypress": "^13.14.2"
+    "cypress": "^15.16.0"
   }
 }
