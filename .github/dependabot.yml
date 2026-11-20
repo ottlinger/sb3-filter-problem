@@ -8,6 +8,10 @@ updates:
     directory: "/sb2"
     schedule:
       interval: "daily"
+    ignore:
+      # Keep Spring Boot on 2.x in this module, including its parent and plugins.
+      - dependency-name: "org.springframework.boot:*"
+        update-types: ["version-update:semver-major"]
   - package-ecosystem: "npm"
     directory: "/cypress-test"
     schedule:
